@@ -1,0 +1,15 @@
+name: default
+base_output_path: outputs
+
+output_folder: !ref <base_output_path>/<name>
+
+llm: !new:modules.llm.llama3.LLama3
+
+planner: !new:modules.planner.PlannerGraph
+    llm: !ref <llm>
+
+agent: !new:modules.agent.Agent
+    planner: !ref <planner>
+    coder: None
+    reviewer: None
+    output_folder: !ref <output_folder>
